@@ -18,7 +18,11 @@ public class OAuthDemo {
         JsonPath js = new JsonPath(accessTokenResponse);
         String accessToken = js.getString("access_token");
 
+        String response = given().queryParams("access_token",accessToken).
+                when().
+                get("https://rahulshettyacademy.com/getCourse.php").asString();
 
+        System.out.println(response);
 
     }
 }
