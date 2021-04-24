@@ -12,14 +12,14 @@ public class OAuthDemo {
               queryParams("client_secret","erZOWM9g3UtwNRj340YYaK_W").
               queryParams("redirect_uri","https://rahulshettyacademy.com/getCourse.php").
               queryParams("grant_type","authorization_code").
-              when().
+              when().log().all().
               post("https://www.googleapis.com/oauth2/v4/token").asString();
 
         JsonPath js = new JsonPath(accessTokenResponse);
         String accessToken = js.getString("access_token");
 
         String response = given().queryParams("access_token",accessToken).
-                when().
+                when().log().all().
                 get("https://rahulshettyacademy.com/getCourse.php").asString();
 
         System.out.println(response);
